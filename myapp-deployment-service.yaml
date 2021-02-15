@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  namespace: default
+  labels:
+    app: myappdpl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myappdpl
+  template:
+    metadata:
+      labels:
+        app: myappdpl
+    spec:
+      containers:
+        - name: myappcntr
+          image: 'localhost:32000/myapp:8'
+          ports:
+            - containerPort: 5000
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myappdpl
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      nodePort: 32767
