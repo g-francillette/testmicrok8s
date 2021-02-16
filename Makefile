@@ -2,11 +2,6 @@ VERSION ?= $(shell bash -c 'read -s -p "Version: " version; echo $$version')
 
 .PHONY: help build push run status helm lint delete
 
-help:
-	    @echo "Makefile commands:"
-	    @echo "build"
-		@echo "push"
-	    @echo "run"
 build:
 	@docker build . -t myk8:32000/myapp:$(VERSION)
 push:
@@ -20,5 +15,5 @@ helm:
 lint:
 	helm lint --kubeconfig=../myk8config ./myappchart
 delete:
-	helm delete --kubeconfig=../myk8config -n default myappchart
+	helm uninstall --kubeconfig=../myk8config myappchart
 

@@ -17,7 +17,24 @@ ajout de l'ip de la vm k8 dans le fichier hosts:
 ```
 # Travail réalisé
 
+* Installation et configuration de microk8s
+* Création du makefile
+* API REST (Uniquement GET) sans persistence
+* build et déploiement de l'API REST via kubectl
 
+# Travail Manquant
+
+* déploiement avec le chart helm
+* CRUD application 
+  
+# Description du makefile
+
+* Build: Création de l'image
+* Push: Envoie de l'image sur le registry microk8s
+* run: Lancement du déploiement du service et du déploiement via la commande kubectl
+* helm: Lancement du déploiement via la chart
+* lint: analyse de la chart
+* delete: désinstallation de la release de la charte
 
 
 
